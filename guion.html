@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guión — Motion Blur | Unidad 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #17171a; --soft: #5c5a56; --line: #dedcd7;
+    --paper: #faf9f7; --amber: #b06f00; --cyan: #0d7c76;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: 'Sora', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 820px; margin: 0 auto; padding: 48px 22px 90px; }
+
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 20px; margin-bottom: 34px; }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--soft); margin-bottom: 10px;
+  }
+  h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 8px; line-height: 1.05; }
+  .sub { color: var(--soft); font-size: 16px; font-weight: 300; }
+
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+  }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; color: var(--soft); }
+
+  .block-head {
+    margin: 44px 0 6px; padding-top: 18px; border-top: 1px solid var(--line);
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  }
+  .block-head .n {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--cyan);
+  }
+  .block-head h2 { font-size: 23px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+  .block-head .t { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--soft); margin-left: auto; }
+
+  .step { display: grid; grid-template-columns: 58px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .step:last-child { border-bottom: none; }
+  .step .num {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--soft);
+    padding-top: 3px; letter-spacing: 0.04em;
+  }
+  .step p { margin: 0; font-size: 16.5px; line-height: 1.6; font-weight: 300; }
+  .step p b { font-weight: 600; color: var(--amber); }
+  .step .do {
+    margin-top: 9px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+    color: var(--cyan); background: rgba(13,124,118,0.07);
+    border-left: 2px solid var(--cyan); padding: 6px 10px; display: inline-block;
+  }
+
+  .tips { margin-top: 46px; border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; background: #fff; }
+  .tips h3 { font-size: 15px; margin: 0 0 12px; letter-spacing: 0.02em; }
+  .tips ul { margin: 0; padding-left: 18px; }
+  .tips li { font-size: 14.5px; line-height: 1.65; font-weight: 300; margin-bottom: 7px; color: #3a3935; }
+  .tips li b { color: var(--amber); font-weight: 600; }
+
+  .numbers { margin-top: 26px; }
+  .numbers table { width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace; }
+  .numbers td { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .numbers td:last-child { text-align: right; color: var(--amber); }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; max-width: none; }
+    .step, .block-head, .tips { break-inside: avoid; }
+    .tips { background: none; }
+  }
+  @media (max-width: 560px) {
+    .step { grid-template-columns: 1fr; gap: 6px; }
+    h1 { font-size: 31px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="kicker">Unidad 2 · Visión Artificial y Robótica · CIICAp</div>
+    <h1>Motion Blur — guión de exposición</h1>
+    <div class="sub">14 diapositivas · 8 minutos aprox. · tres bloques parejos</div>
+    <div class="meta">
+      <span class="chip">Lara Ocampo Luis Adrián</span>
+      <span class="chip">Maciel Ramírez Bruno</span>
+      <span class="chip">Sotelo Rodas Christian</span>
+    </div>
+  </header>
+
+  <!-- ============ BLOQUE 1 ============ -->
+  <div class="block-head">
+    <span class="n">Bloque 1</span>
+    <h2>Lara Ocampo — qué es y por qué pasa</h2>
+    <span class="t">≈ 2:30</span>
+  </div>
+
+  <div class="step">
+    <div class="num">01<br>portada</div>
+    <div>
+      <p>Buenas tardes. Somos Lara, Bruno y Christian. Vamos a hablar de <b>motion blur</b>: por qué una foto sale “embarrada” cuando algo se mueve, y por qué eso le arruina la vida a un robot.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">02</div>
+    <div>
+      <p>Empiezo yo. Primero hay que entender algo que suena obvio pero no lo es: <b>la cámara no congela nada</b>.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">03<br>cubetas</div>
+    <div>
+      <p>Una cámara no toma fotos: <b>junta luz</b>. Imaginen que cada píxel es una cubeta chiquita. Cuando se abre el obturador, empiezan a caer gotas de luz dentro de cada cubeta. Cuando se cierra, se cuenta cuántas juntó. El tiempo de exposición es, literalmente, <b>cuánto tiempo dejas las cubetas destapadas</b>.</p>
+      <div class="do">▸ Señala las cubetas: más tiempo, más llena.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">04<br>crayón</div>
+    <div>
+      <p>¿Y de dónde sale la mancha? Piensen en un crayón: si lo apoyan y arrastran la hoja, no queda un punto, <b>queda una raya</b>. Lo mismo pasa aquí: la foto es el promedio de todas las posiciones que ocupó el objeto mientras el sensor juntaba luz. Por eso el blur <b>no se arregla enfocando</b>.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">05<br>demo 1</div>
+    <div>
+      <p>Véanlo en vivo. Este es un ventilador a tres mil vueltas por minuto. Si bajo el tiempo de exposición, las aspas <b>se congelan</b>… pero miren qué oscuro queda todo. Y si lo subo, hay luz de sobra, pero las aspas <b>desaparecen</b>. Ese es el trato: nitidez a cambio de luz.</p>
+      <div class="do">▸ Mueve el slider a los dos extremos y déjalo en medio.</div>
+    </div>
+  </div>
+
+  <!-- ============ BLOQUE 2 ============ -->
+  <div class="block-head">
+    <span class="n">Bloque 2</span>
+    <h2>Maciel Ramírez Bruno — cuánto y qué daño hace</h2>
+    <span class="t">≈ 2:30</span>
+  </div>
+
+  <div class="step">
+    <div class="num">06</div>
+    <div>
+      <p>Gracias, Lara. Eso que vieron se puede <b>calcular</b>, y el ejemplo que vamos a usar es un robot que devuelve pelotas de ping-pong.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">07<br>fórmula</div>
+    <div>
+      <p>Solo necesitamos una fórmula: <b>arrastre igual a velocidad por tiempo de exposición, entre GSD</b>. GSD es cuántos milímetros del mundo real le tocan a un píxel. En nuestra cámara, un píxel ve <b>0.94 milímetros</b>.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">08<br>demo 2</div>
+    <div>
+      <p>Con esto ya podemos jugar. Un smash va a <b>25 metros por segundo</b>. Con una milésima de segundo de exposición, la pelota se arrastra <b>27 píxeles</b>: deja de ser pelota y se vuelve una raya. Si bajo el tiempo, vuelve a ser pelota.</p>
+      <div class="do">▸ Mueve el tiempo de 1 ms hasta 37 µs.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">09<br>clave</div>
+    <div>
+      <p>Y aquí está lo que casi nadie dice: el blur <b>no solo se ve feo, corrompe la medición</b>. La pelota mide 40 milímetros pero en la imagen ocupa 65: el robot cree que está más cerca. Y peor: el centro de la mancha corresponde a la <b>mitad de la exposición</b>, o sea que la cámara reporta dónde estuvo, no dónde está.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">10<br>regla</div>
+    <div>
+      <p>Por eso en ingeniería se usa una regla sencilla: <b>el arrastre debe caber en un píxel</b>. Para un smash eso significa <b>37 microsegundos</b> o menos. Te paso a ti, Christian.</p>
+    </div>
+  </div>
+
+  <!-- ============ BLOQUE 3 ============ -->
+  <div class="block-head">
+    <span class="n">Bloque 3</span>
+    <h2>Sotelo Rodas Christian — cómo se derrota</h2>
+    <span class="t">≈ 2:30</span>
+  </div>
+
+  <div class="step">
+    <div class="num">11</div>
+    <div>
+      <p>Perfecto. Entonces ya sabemos la solución: bajarle al tiempo. Ojalá fuera tan fácil.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">12<br>demo 3</div>
+    <div>
+      <p>Porque si bajo el tiempo, <b>entra 267 veces menos luz</b>. Alguien dirá: súbele a la ganancia. Miren lo que pasa — la imagen se aclara, pero <b>el ruido se come la pelota</b>. La ganancia no crea luz, solo amplifica lo que hay, ruido incluido. Ahora enciendo el estrobo: mismo tiempo cortito, y la imagen sale limpia.</p>
+      <div class="do">▸ Baja el tiempo, sube la ganancia, luego enciende el estrobo.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">13<br>demo 4</div>
+    <div>
+      <p>Y hay un segundo enemigo. Muchas cámaras leen el sensor <b>renglón por renglón</b>: eso es rolling shutter. Para cuando el barrido llega abajo, el objeto ya se movió, y la imagen sale <b>inclinada</b>. Por eso en visión industrial se usa obturador global.</p>
+      <div class="do">▸ Sube la velocidad y muestra cómo se chueca.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">14<br>cierre</div>
+    <div>
+      <p>Para cerrar: hay tres caminos. Ganancia, que mete ruido. Abrir el lente, que tiene tope. Y luz, que sí funciona. La idea que queremos que se lleven es esta: <b>congelar el movimiento no se paga con tiempo, se paga con luz</b>. Gracias.</p>
+    </div>
+  </div>
+
+  <!-- ============ APOYOS ============ -->
+  <div class="tips">
+    <h3>Por si preguntan</h3>
+    <ul>
+      <li><b>¿Y si uso un lente más abierto?</b> Ayuda, pero el diafragma tiene tope y al abrirlo pierdes profundidad de campo: ahora lo que falla es el enfoque.</li>
+      <li><b>¿El blur no se quita con software?</b> Se puede intentar deconvolución, pero la información ya se perdió al promediarse. Sale ruido y artefactos; es mucho más barato no generarlo.</li>
+      <li><b>¿Por qué el estrobo sí funciona?</b> Porque el destello dura microsegundos: la duración de la luz define el tiempo efectivo de exposición, aunque el obturador esté abierto más tiempo.</li>
+      <li><b>¿Y el momento del disparo?</b> Un trigger por hardware dispara en microsegundos; uno por software tarda decenas de milisegundos y varía. Congelar no sirve si disparas tarde.</li>
+    </ul>
+  </div>
+
+  <div class="tips numbers">
+    <h3>Números que conviene traer en la cabeza</h3>
+    <table>
+      <tr><td>Un píxel de nuestra cámara ve</td><td>0.94 mm</td></tr>
+      <tr><td>Pelota de ping-pong</td><td>40 mm ≈ 43 px</td></tr>
+      <tr><td>Smash</td><td>25 m/s</td></tr>
+      <tr><td>Arrastre con 1 ms</td><td>27 px</td></tr>
+      <tr><td>Exposición máxima para 1 px</td><td>37.5 µs</td></tr>
+      <tr><td>Luz que se pierde al congelar</td><td>267× menos</td></tr>
+    </table>
+  </div>
+
+  <div class="tips">
+    <h3>Cómo manejar la presentación</h3>
+    <ul>
+      <li>Avanzar: <b>flecha derecha</b> o <b>barra espaciadora</b>. Regresar: flecha izquierda.</li>
+      <li>La tecla <b>G</b> muestra u oculta este guión dentro de la presentación — úsenla para ensayar y apáguenla antes de exponer.</li>
+      <li>La tecla <b>E</b> permite corregir textos a última hora.</li>
+      <li>Ábranla una vez con internet antes de la clase para que el navegador guarde las tipografías.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
